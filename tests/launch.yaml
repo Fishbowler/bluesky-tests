@@ -1,5 +1,7 @@
 appId: xyz.blueskyweb.app
 name: Launch via Home Screen
+tags:
+  - smoke
 ---
 - launchApp
 - stopApp

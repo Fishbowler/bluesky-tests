@@ -17,7 +17,7 @@ workflows:
     - git::https://github.com/mobile-dev-inc/bitrise-step-maestro-cloud-upload.git@main:
         inputs:
         - api_key: "$CLOUD_API_KEY"
-        - app_file: Bluesky.apk
+        - app_binary_id: "c67fc8475326aa9f280e5422f435bfeab9227ff8"
         - project_id: "$CLOUD_PROJECT_ID"
         - workspace: "."
         - upload_name: Bitrise Upload

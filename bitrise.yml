@@ -14,7 +14,7 @@ workflows:
         inputs:
         - source: https://github.com/bluesky-social/social-app/releases/download/1.108.0/Bluesky-1.108.0.apk
         - destination: "./Bluesky.apk"
-    - git::https://github.com/mobile-dev-inc/bitrise-step-maestro-cloud-upload.git@main:
+    - git::https://github.com/mobile-dev-inc/bitrise-step-maestro-cloud-upload.git@1.7.0:
         inputs:
         - api_key: "$CLOUD_API_KEY"
         - app_binary_id: "c67fc8475326aa9f280e5422f435bfeab9227ff8"

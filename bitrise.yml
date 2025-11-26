@@ -1,0 +1,36 @@
+---
+format_version: '23'
+default_step_lib_source: https://github.com/bitrise-io/bitrise-steplib.git
+project_type: other
+workflows:
+  step-test:
+    steps:
+    - activate-ssh-key@4:
+        run_if: '{{getenv "SSH_RSA_PRIVATE_KEY" | ne ""}}'
+    - git-clone@8:
+        inputs:
+        - update_submodules: 'no'
+    - file-downloader@1:
+        inputs:
+        - source: https://github.com/bluesky-social/social-app/releases/download/1.108.0/Bluesky-1.108.0.apk
+        - destination: "./Bluesky.apk"
+    - git::https://github.com/mobile-dev-inc/bitrise-step-maestro-cloud-upload.git@main:
+        inputs:
+        - api_key: "$CLOUD_API_KEY"
+        - app_file: Bluesky.apk
+        - project_id: "$CLOUD_PROJECT_ID"
+        - workspace: "."
+        - upload_name: Bitrise Upload
+        - android_api_level: '34'
+        - include_tags: smoke
+    triggers:
+      push:
+      - branch: main
+      pull_request:
+      - source_branch: "*"
+meta:
+  bitrise.io:
+    stack: linux-docker-android-22.04
+app:
+  envs:
+  - CLOUD_PROJECT_ID: proj_01k2yqx2h5ey9tqzcps001j0r7
